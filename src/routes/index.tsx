@@ -67,7 +67,7 @@ function LinkButton({ href, icon, children }: { href: string; icon: ReactNode; c
 function Seal({ children, label }: { children: ReactNode; label: string }) {
   return (
     <div className="flex flex-col items-center gap-1.5">
-      <div aria-label={label} role="img" className="gold-seal flex h-14 w-14 items-center justify-center rounded-full text-gold md:h-[4.25rem] md:w-[4.25rem]">
+      <div aria-label={label} role="img" className="gold-seal flex h-12 w-12 items-center justify-center rounded-full text-gold md:h-[3.75rem] md:w-[3.75rem]">
         {children}
       </div>
       <span className="rounded-full bg-backdrop/85 px-2 py-0.5 text-[0.6rem] font-semibold uppercase tracking-[0.18em] text-brand-ink/80 backdrop-blur-sm md:text-[0.7rem]">{label}</span>
@@ -138,7 +138,7 @@ function Index() {
           </div>
         </section>
         <div
-          className="mt-5 flex justify-center gap-3 md:absolute md:-right-6 md:bottom-10 md:mt-0 md:flex-col md:gap-4"
+          className="mt-5 flex justify-center gap-2.5 md:absolute md:-right-3 md:bottom-10 md:mt-0 md:flex-col md:gap-3"
           style={{
             transform: `translateZ(40px) translateY(${(-scrollY * 0.08).toFixed(1)}px)`,
             transition: "transform 0.25s ease-out",

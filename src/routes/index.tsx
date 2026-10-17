@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import type { ReactNode } from "react";
 import logo from "@/assets/logo.png";
 import car from "@/assets/car.jpg";
+import car2Asset from "@/assets/car2.png.asset.json";
 import polisher from "@/assets/polisher.png";
 
 // Edite aqui os dados reais da empresa. Links vazios ficam desativados.

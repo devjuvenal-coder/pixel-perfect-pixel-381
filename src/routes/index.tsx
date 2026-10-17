@@ -80,7 +80,7 @@ function Index() {
           aria-hidden
           width={1024}
           height={1024}
-          className="pointer-events-none absolute -right-56 top-24 z-10 hidden w-80 -scale-x-100 rotate-[20deg] drop-shadow-2xl md:block"
+          className="pointer-events-none absolute -right-56 top-24 z-10 hidden w-80 -rotate-[10deg] drop-shadow-2xl md:block"
         />
         <section className="bio-card relative rounded-[2.5rem] px-6 pb-6 pt-10 sm:px-8">
           <div className="mx-auto h-40 w-40 overflow-hidden rounded-full bg-brand-ink shadow-xl ring-2 ring-gold sm:h-44 sm:w-44">

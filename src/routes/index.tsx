@@ -78,6 +78,7 @@ function Seal({ children, label }: { children: ReactNode; label: string }) {
 function Index() {
   const [scrollY, setScrollY] = useState(0);
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
+  const [showSecondCar, setShowSecondCar] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrollY(window.scrollY);
@@ -89,9 +90,11 @@ function Index() {
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("pointermove", onMove, { passive: true });
+    const carTimer = window.setInterval(() => setShowSecondCar((v) => !v), 6000);
     return () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("pointermove", onMove);
+      window.clearInterval(carTimer);
     };
   }, []);
 

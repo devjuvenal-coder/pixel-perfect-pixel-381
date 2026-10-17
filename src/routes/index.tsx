@@ -65,8 +65,11 @@ function LinkButton({ href, icon, children }: { href: string; icon: ReactNode; c
 
 function Seal({ children, label }: { children: ReactNode; label: string }) {
   return (
-    <div aria-label={label} role="img" className="gold-seal flex h-14 w-14 items-center justify-center rounded-full text-gold md:h-[4.25rem] md:w-[4.25rem]">
-      {children}
+    <div className="flex flex-col items-center gap-1.5">
+      <div aria-label={label} role="img" className="gold-seal flex h-14 w-14 items-center justify-center rounded-full text-gold md:h-[4.25rem] md:w-[4.25rem]">
+        {children}
+      </div>
+      <span className="text-[0.6rem] font-semibold uppercase tracking-[0.18em] text-brand-ink/80 md:text-[0.7rem]">{label}</span>
     </div>
   );
 }

@@ -131,15 +131,15 @@ function Index() {
           <img src={car} alt="Carro vermelho com acabamento impecável" loading="lazy" className="mt-6 aspect-[485/415] w-full rounded-[2rem] object-cover" />
         </section>
         <div
-          className="mt-5 flex justify-center gap-3 md:absolute md:-right-14 md:bottom-10 md:mt-0 md:flex-col"
+          className="mt-5 flex justify-center gap-3 md:absolute md:-right-6 md:bottom-10 md:mt-0 md:flex-col md:gap-4"
           style={{
             transform: `translateZ(40px) translateY(${(-scrollY * 0.08).toFixed(1)}px)`,
             transition: "transform 0.25s ease-out",
           }}
         >
-          <Seal label="Polimento profissional"><PolishSeal /></Seal>
-          <Seal label="Proteção e confiança"><ShieldSeal /></Seal>
-          <Seal label="Acabamento impecável"><CarSeal /></Seal>
+          <Seal label="Polimento"><PolishSeal /></Seal>
+          <Seal label="Proteção"><ShieldSeal /></Seal>
+          <Seal label="Estética"><CarSeal /></Seal>
         </div>
       </div>
     </main>

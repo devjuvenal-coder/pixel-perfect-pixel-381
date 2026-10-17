@@ -138,7 +138,7 @@ function Index() {
           </div>
         </section>
         <div
-          className="mt-5 flex justify-center gap-2.5 md:absolute md:-right-3 md:bottom-10 md:mt-0 md:flex-col md:gap-3"
+          className="mt-5 flex justify-center gap-2.5 md:absolute md:-right-10 md:bottom-10 md:mt-0 md:flex-col md:gap-3"
           style={{
             transform: `translateZ(40px) translateY(${(-scrollY * 0.08).toFixed(1)}px)`,
             transition: "transform 0.25s ease-out",

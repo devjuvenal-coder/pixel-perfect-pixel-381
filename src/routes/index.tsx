@@ -107,9 +107,9 @@ function Index() {
           aria-hidden
           width={1024}
           height={1024}
-          className="pointer-events-none absolute -right-60 -top-4 z-10 hidden w-64 -rotate-45 drop-shadow-2xl md:block"
+          className="pointer-events-none absolute -right-60 -top-6 z-10 hidden w-64 drop-shadow-2xl md:block"
           style={{
-            transform: `translateZ(70px) translateY(${(-scrollY * 0.12).toFixed(1)}px) rotate(-45deg)`,
+            transform: `translateZ(70px) translateY(${(-scrollY * 0.12).toFixed(1)}px) rotate(45deg)`,
             transition: "transform 0.25s ease-out",
           }}
         />

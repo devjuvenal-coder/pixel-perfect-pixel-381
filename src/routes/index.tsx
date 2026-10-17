@@ -69,7 +69,7 @@ function Seal({ children, label }: { children: ReactNode; label: string }) {
       <div aria-label={label} role="img" className="gold-seal flex h-14 w-14 items-center justify-center rounded-full text-gold md:h-[4.25rem] md:w-[4.25rem]">
         {children}
       </div>
-      <span className="text-[0.6rem] font-semibold uppercase tracking-[0.18em] text-brand-ink/80 md:text-[0.7rem]">{label}</span>
+      <span className="rounded-full bg-backdrop/85 px-2 py-0.5 text-[0.6rem] font-semibold uppercase tracking-[0.18em] text-brand-ink/80 backdrop-blur-sm md:text-[0.7rem]">{label}</span>
     </div>
   );
 }

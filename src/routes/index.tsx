@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 import type { ReactNode } from "react";
 import logo from "@/assets/logo.png";
 import car from "@/assets/car.jpg";
@@ -64,25 +65,55 @@ function LinkButton({ href, icon, children }: { href: string; icon: ReactNode; c
 
 function Seal({ children, label }: { children: ReactNode; label: string }) {
   return (
-    <div aria-label={label} role="img" className="gold-seal flex h-20 w-20 items-center justify-center rounded-full text-gold md:h-24 md:w-24">
+    <div aria-label={label} role="img" className="gold-seal flex h-14 w-14 items-center justify-center rounded-full text-gold md:h-[4.25rem] md:w-[4.25rem]">
       {children}
     </div>
   );
 }
 
 function Index() {
+  const [scrollY, setScrollY] = useState(0);
+  const [tilt, setTilt] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const onScroll = () => setScrollY(window.scrollY);
+    const onMove = (e: PointerEvent) => {
+      setTilt({
+        x: (e.clientX / window.innerWidth - 0.5) * 2,
+        y: (e.clientY / window.innerHeight - 0.5) * 2,
+      });
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("pointermove", onMove, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("pointermove", onMove);
+    };
+  }, []);
+
   return (
     <main className="relative flex min-h-screen justify-center overflow-x-hidden bg-backdrop px-3 py-6 md:py-16">
-      <div className="relative w-full max-w-[460px] self-start">
+      <div
+        className="relative w-full max-w-[460px] self-start"
+        style={{
+          transformStyle: "preserve-3d",
+          transform: `perspective(1200px) rotateX(${(-tilt.y * 2).toFixed(2)}deg) rotateY(${(tilt.x * 2).toFixed(2)}deg) translateY(${(scrollY * 0.05).toFixed(1)}px)`,
+          transition: "transform 0.25s ease-out",
+        }}
+      >
         <img
           src={polisher}
           alt=""
           aria-hidden
           width={1024}
           height={1024}
-          className="pointer-events-none absolute -right-56 -top-12 z-10 hidden w-72 -rotate-[10deg] drop-shadow-2xl md:block"
+          className="pointer-events-none absolute -right-60 top-2 z-10 hidden w-64 drop-shadow-2xl md:block"
+          style={{
+            transform: `translateZ(70px) translateY(${(-scrollY * 0.12).toFixed(1)}px) rotate(-45deg)`,
+            transition: "transform 0.25s ease-out",
+          }}
         />
-        <section className="bio-card relative rounded-[2.5rem] px-6 pb-6 pt-10 sm:px-8">
+        <section className="bio-card relative rounded-[2.5rem] px-6 pb-6 pt-10 shadow-[0_30px_60px_-20px_rgba(0,0,0,0.55)] sm:px-8">
           <div className="mx-auto h-40 w-40 overflow-hidden rounded-full bg-brand-ink shadow-xl ring-2 ring-gold sm:h-44 sm:w-44">
             <img src={logo} alt="Logotipo Estética 28 — Restauração Automotiva" width={1024} height={1024} className="h-full w-full scale-[1.04] object-cover" />
           </div>
@@ -96,7 +127,13 @@ function Index() {
           </nav>
           <img src={car} alt="Carro vermelho com acabamento impecável" loading="lazy" className="mt-6 aspect-[485/415] w-full rounded-[2rem] object-cover" />
         </section>
-        <div className="mt-6 flex justify-center gap-5 md:absolute md:-right-28 md:bottom-44 md:mt-0 md:flex-col">
+        <div
+          className="mt-5 flex justify-center gap-3 md:absolute md:-right-14 md:bottom-10 md:mt-0 md:flex-col"
+          style={{
+            transform: `translateZ(40px) translateY(${(-scrollY * 0.08).toFixed(1)}px)`,
+            transition: "transform 0.25s ease-out",
+          }}
+        >
           <Seal label="Polimento profissional"><PolishSeal /></Seal>
           <Seal label="Proteção e confiança"><ShieldSeal /></Seal>
           <Seal label="Acabamento impecável"><CarSeal /></Seal>

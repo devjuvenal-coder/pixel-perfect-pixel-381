@@ -80,7 +80,7 @@ function Index() {
           aria-hidden
           width={1024}
           height={1024}
-          className="pointer-events-none absolute -right-72 top-20 z-10 hidden w-80 -rotate-[10deg] drop-shadow-2xl md:block"
+          className="pointer-events-none absolute -right-40 -top-4 z-10 hidden w-72 -rotate-[10deg] drop-shadow-2xl md:block"
         />
         <section className="bio-card relative rounded-[2.5rem] px-6 pb-6 pt-10 sm:px-8">
           <div className="mx-auto h-40 w-40 overflow-hidden rounded-full bg-brand-ink shadow-xl ring-2 ring-gold sm:h-44 sm:w-44">
@@ -96,7 +96,7 @@ function Index() {
           </nav>
           <img src={car} alt="Carro vermelho com acabamento impecável" loading="lazy" className="mt-6 aspect-[485/415] w-full rounded-[2rem] object-cover" />
         </section>
-        <div className="mt-6 flex justify-center gap-5 md:absolute md:-right-32 md:bottom-20 md:mt-0 md:flex-col">
+        <div className="mt-6 flex justify-center gap-5 md:absolute md:-right-24 md:bottom-40 md:mt-0 md:flex-col">
           <Seal label="Polimento profissional"><PolishSeal /></Seal>
           <Seal label="Proteção e confiança"><ShieldSeal /></Seal>
           <Seal label="Acabamento impecável"><CarSeal /></Seal>

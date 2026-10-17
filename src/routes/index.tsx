@@ -132,7 +132,10 @@ function Index() {
             <LinkButton href={CONFIG.instagram} icon={<InstaIcon />}>Nosso Instagram</LinkButton>
             <LinkButton href={CONFIG.maps} icon={<PinIcon />}>Nossa localização</LinkButton>
           </nav>
-          <img src={car} alt="Carro vermelho com acabamento impecável" loading="lazy" className="mt-6 aspect-[485/415] w-full rounded-[2rem] object-cover" />
+          <div className="relative mt-6 aspect-[485/415] w-full overflow-hidden rounded-[2rem]">
+            <img src={car} alt="Carro vermelho com acabamento impecável" loading="lazy" className="absolute inset-0 h-full w-full object-cover" style={{ opacity: showSecondCar ? 0 : 1, transition: "opacity 2s ease-in-out" }} />
+            <img src={car2Asset.url} alt="Camaro preto com pintura espelhada" loading="lazy" className="absolute inset-0 h-full w-full object-cover" style={{ opacity: showSecondCar ? 1 : 0, transition: "opacity 2s ease-in-out" }} />
+          </div>
         </section>
         <div
           className="mt-5 flex justify-center gap-3 md:absolute md:-right-6 md:bottom-10 md:mt-0 md:flex-col md:gap-4"

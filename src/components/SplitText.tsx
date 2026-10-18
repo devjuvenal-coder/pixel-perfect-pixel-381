@@ -202,7 +202,7 @@ const SplitText = ({
         tl.fromTo(
           pieces,
           { ...(fromVars as gsap.TweenVars), willChange: "transform, opacity" },
-          { ...(toVars as gsap.TweenVars), duration, ease: easing as gsap.TweenValue, stagger: order as never, immediateRender: initial },
+          { ...(toVars as gsap.TweenVars), duration, ease: easing as gsap.TweenVars["ease"], stagger: order as never, immediateRender: initial },
           0
         );
         if (accent) {

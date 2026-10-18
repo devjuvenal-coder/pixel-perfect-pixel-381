@@ -228,8 +228,8 @@ const SplitText = ({
         const tl = gsap.timeline();
         tl.fromTo(
           pieces,
-          { ...toVars, willChange: "transform, opacity" },
-          { ...fromVars, duration: exit, ease: "power2.in", stagger: order as never, immediateRender: false },
+          { ...(toVars as gsap.TweenVars), willChange: "transform, opacity" },
+          { ...(fromVars as gsap.TweenVars), duration: exit, ease: "power2.in", stagger: order as never, immediateRender: false },
           0
         );
         if (accent) tl.to(pieces, { color: accent, duration: exit, ease: "power1.in", stagger: order as never }, 0);
@@ -353,7 +353,7 @@ const SplitText = ({
         if (liveRef.current.trigger === "click") cycle();
       };
 
-      const splitVars: ConstructorParameters<typeof GSAPSplitText>[0] = {
+      const splitVars: NonNullable<Parameters<typeof GSAPSplitText>[1]> = {
         type: splitType,
         smartWrap: true,
         autoSplit: splitType === "lines",

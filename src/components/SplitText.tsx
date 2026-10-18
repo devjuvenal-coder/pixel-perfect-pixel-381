@@ -154,7 +154,7 @@ const SplitText = ({
 
       const startPct = (1 - threshold) * 100;
       const marginMatch = /^(-?\d+(?:\.\d+)?)(px|em|rem|%)?$/.exec(rootMargin);
-      const marginValue = marginMatch ? parseFloat(marginMatch[1]) : 0;
+      const marginValue = marginMatch ? parseFloat(marginMatch[1] ?? "0") : 0;
       const marginUnit = marginMatch ? marginMatch[2] || "px" : "px";
       const sign =
         marginValue === 0
@@ -201,8 +201,8 @@ const SplitText = ({
         const tl = gsap.timeline(vars);
         tl.fromTo(
           pieces,
-          { ...fromVars, willChange: "transform, opacity" },
-          { ...toVars, duration, ease: easing as gsap.TweenValue, stagger: order as never, immediateRender: initial },
+          { ...(fromVars as gsap.TweenVars), willChange: "transform, opacity" },
+          { ...(toVars as gsap.TweenVars), duration, ease: easing as gsap.TweenValue, stagger: order as never, immediateRender: initial },
           0
         );
         if (accent) {
@@ -276,9 +276,10 @@ const SplitText = ({
         const radius = em * 1.15;
         let moving = false;
         for (let k = kicks.length - 1; k >= 0; k--) {
-          if (now < kicks[k].at) continue;
-          const spring = springs[kicks[k].index];
-          if (spring) spring.v -= kicks[k].velocity;
+          const kick = kicks[k];
+          if (!kick || now < kick.at) continue;
+          const spring = springs[kick.index];
+          if (spring) spring.v -= kick.velocity;
           kicks.splice(k, 1);
         }
         movers.forEach((node, i) => {
@@ -352,15 +353,17 @@ const SplitText = ({
         if (liveRef.current.trigger === "click") cycle();
       };
 
-      const splitInstance = new GSAPSplitText(el, {
+      const splitVars: ConstructorParameters<typeof GSAPSplitText>[0] = {
         type: splitType,
         smartWrap: true,
         autoSplit: splitType === "lines",
-        mask: mask ? unit : undefined,
         linesClass: "split-line",
         wordsClass: "split-word",
         charsClass: "split-char",
         reduceWhiteSpace: false,
+      };
+      if (mask) splitVars.mask = unit as "chars" | "words" | "lines";
+      const splitInstance = new GSAPSplitText(el, splitVars);
         onSplit: (self) => {
           pieces =
             ([self[unit] as Element[], self.chars, self.words, self.lines].find(

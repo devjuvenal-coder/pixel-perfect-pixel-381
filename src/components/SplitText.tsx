@@ -363,39 +363,39 @@ const SplitText = ({
         reduceWhiteSpace: false,
       };
       if (mask) splitVars.mask = unit as "chars" | "words" | "lines";
-      const splitInstance = new GSAPSplitText(el, splitVars);
-        onSplit: (self) => {
-          pieces =
-            ([self[unit] as Element[], self.chars, self.words, self.lines].find(
-              (list) => list && list.length
-            ) as Element[]) || [];
-          movers = mask && self.masks?.length === pieces.length ? (self.masks as Element[]) : pieces;
-          order = gsap.utils.distribute({ each: delay / 1000, from: staggerFrom });
-          centers = null;
-          springs.length = 0;
-          kicks.length = 0;
-          if (busy && busy !== intro) {
-            busy.kill();
+      const onSplit = (self: GSAPSplitText) => {
+        pieces =
+          ([self[unit] as Element[], self.chars, self.words, self.lines].find(
+            (list) => list && list.length
+          ) as Element[]) || [];
+        movers = mask && self.masks?.length === pieces.length ? (self.masks as Element[]) : pieces;
+        order = gsap.utils.distribute({ each: delay / 1000, from: staggerFrom });
+        centers = null;
+        springs.length = 0;
+        kicks.length = 0;
+        if (busy && busy !== intro) {
+          busy.kill();
+          busy = null;
+        }
+        if (revealed) return undefined;
+        const introVars: gsap.TimelineVars = {
+          onComplete: () => {
+            revealed = true;
+            intro = null;
             busy = null;
-          }
-          if (revealed) return undefined;
-          intro = reveal(true, {
-            scrollTrigger:
-              trigger === "load"
-                ? undefined
-                : ({ trigger: el, start, once: true, fastScrollEnd: true, anticipatePin: 0.4 } as never),
-            onComplete: () => {
-              revealed = true;
-              intro = null;
-              busy = null;
-              finish();
-              queue();
-            },
-          });
-          busy = intro;
-          return intro as never;
-        },
-      });
+            finish();
+            queue();
+          },
+        };
+        if (trigger !== "load") {
+          introVars.scrollTrigger = { trigger: el, start, once: true, fastScrollEnd: true, anticipatePin: 0.4 } as never;
+        }
+        intro = reveal(true, introVars);
+        busy = intro;
+        return intro as never;
+      };
+      splitVars.onSplit = onSplit;
+      const splitInstance = new GSAPSplitText(el, splitVars);
       setReady(true);
       if (revealed) queue();
 

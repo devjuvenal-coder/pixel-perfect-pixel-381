@@ -155,6 +155,7 @@
   --color-gold: var(--gold);
   --color-gold-light: var(--gold-light);
   --color-backdrop: var(--backdrop);
+  --font-display: "Playfair Display", "Georgia", serif;
 }
 body { font-family: "Inter", system-ui, sans-serif; }
 @utility bio-card {

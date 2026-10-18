@@ -5,6 +5,7 @@ import logo from "@/assets/logo.png";
 import car from "@/assets/car.jpg";
 import car2Asset from "@/assets/car2.png.asset.json";
 import polisher from "@/assets/polisher.png";
+import SplitText from "@/components/SplitText";
 
 // Edite aqui os dados reais da empresa. Links vazios ficam desativados.
 const CONFIG = {
@@ -124,8 +125,50 @@ function Index() {
           <div className="mx-auto h-40 w-40 overflow-hidden rounded-full bg-brand-ink shadow-xl ring-2 ring-gold sm:h-44 sm:w-44">
             <img src={logo} alt="Logotipo Estética 28 — Restauração Automotiva" width={1024} height={1024} className="h-full w-full scale-[1.04] object-cover" />
           </div>
-          <h1 className="mt-6 text-center text-xl leading-snug text-brand-ink sm:text-2xl">
-            Seu carro merece o mesmo<br />cuidado que você tem<br />com a sua imagem!
+          <h1 className="mt-6 text-center font-display text-xl leading-snug text-brand-ink sm:text-2xl">
+            <SplitText
+              tag="span"
+              className="block"
+              text="Seu carro merece o mesmo"
+              effect="rise"
+              splitType="chars"
+              delay={45}
+              duration={1.1}
+              staggerFrom="start"
+              trigger="view"
+              hoverEffect="lift"
+              threshold={0.1}
+              rootMargin="-100px"
+            />
+            <SplitText
+              tag="span"
+              className="block"
+              text="cuidado que você tem"
+              effect="rise"
+              splitType="chars"
+              delay={45}
+              duration={1.1}
+              staggerFrom="start"
+              trigger="view"
+              hoverEffect="lift"
+              threshold={0.1}
+              rootMargin="-100px"
+            />
+            <SplitText
+              tag="span"
+              className="block text-gold"
+              text="com a sua imagem!"
+              effect="rise"
+              splitType="chars"
+              delay={45}
+              duration={1.1}
+              staggerFrom="start"
+              trigger="view"
+              hoverEffect="lift"
+              accentColor="oklch(0.9 0.09 88)"
+              threshold={0.1}
+              rootMargin="-100px"
+            />
           </h1>
           <nav className="mt-7 flex flex-col gap-4">
             <LinkButton href={CONFIG.whatsapp} icon={<WhatsIcon />}>Agende seu horário</LinkButton>
